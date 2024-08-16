@@ -1,16 +1,6 @@
-from django.shortcuts import render, redirect
-from .forms import DocumentForm
-from .models import Document
+from django.shortcuts import render
+from .models import Audit
 
-
-def index(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    else:
-        form = DocumentForm()
-
-    documents = Document.objects.all()
-    return render(request, 'index.html', {'form': form, 'documents': documents})
+def audit_list(request):
+    audits = Audit.objects.all()  # Busca todos os registros da tabela
+    return render(request, 'audit_list.html', {'audits': audits})

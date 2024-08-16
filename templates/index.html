@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Documentos</title>
+    <title>Lista de Auditorias</title>
 </head>
 <body>
-    <h1>Upload de Documentos</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form>
-
-    <h2>Documentos Existentes</h2>
+    <h1>Lista de Auditorias</h1>
     <ul>
-        {% for document in documents %}
-            <li><a href="{{ document.file.url }}">{{ document.title }}</a></li>
+        {% for audit in audits %}
+            <li>{{ audit.creation_date }} - {{ audit.source_app }} - {{ audit.audited_user }} - {{ audit.description }}</li>
         {% endfor %}
     </ul>
 </body>

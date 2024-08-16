@@ -1,9 +1,12 @@
 from django.db import models
 
-class Document(models.Model):
-    title = models.CharField(max_length=100)
-    file = models.FileField(upload_to='documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+class Audit(models.Model):
+    id = models.AutoField(primary_key=True)
+    source_app = models.CharField(max_length=100)
+    audited_user = models.CharField(max_length=100)
+    description = models.TextField()
+    creation_date = models.DateTimeField()
 
     class Meta:
-        db_table = 'documents'
+        managed = False
+        db_table = 'audits'
